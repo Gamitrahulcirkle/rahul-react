@@ -2,6 +2,7 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
+import './assets/style.css'
 import { Routes, Route } from "react-router-dom";
 import React from 'react'
 import Header from './components/Header/Header'
