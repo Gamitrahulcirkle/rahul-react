@@ -37,9 +37,9 @@ ul.menu li a {
 /* Global Container */
 .container {
     width: 90%;
-    max-width: 1280px;
-    margin: 0 auto; /* Center the container */
-    padding: 20px;
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0px 20px;
 }
 
 /* Full-width sections */
