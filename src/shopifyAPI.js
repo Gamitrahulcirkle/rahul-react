@@ -345,7 +345,6 @@ export const fetchCartData = async (cartId) => {
         variables: { cartId },
       }),
     });
-
     const data = await resCart.json();
     console.log("data===>");
     console.log(data);
