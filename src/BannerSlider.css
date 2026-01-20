@@ -1,0 +1,13 @@
+/* BannerSlider.css */
+.banner-slider-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .banner-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
