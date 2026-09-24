@@ -3,12 +3,12 @@ import ProductsList from "../subsections/ProductList";
 import BannerSlider from "../subsections/BannerSlider";
 import NewSlide from "../subsections/NewSlide";
 
-const Home = () => {
+const Home = ({ isCartOpen, setIsCartOpen, cart, setCart }) => {
   return (
     <>    
       {/* <NewSlide /> */}
       <BannerSlider />
-      <ProductsList />
+      <ProductsList isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} cart={cart} setCart={setCart} />
     </>
   );
 };

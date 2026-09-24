@@ -321,3 +321,15 @@ ul.product-list-ele li img {
     font-size: 20px;
   }
 }
+.qty_box {
+    display: inline-flex;
+    float: left;
+    margin: 0 1em 1em 0;
+}
+.qty_box input[type=number] {
+    /* margin: 0px; */
+    -webkit-appearance: none;
+    max-width: 58px;
+    min-height: 36px;
+    padding: .3em;
+}

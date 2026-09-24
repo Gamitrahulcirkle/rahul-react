@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import MainBody from "./components/MainBody";
 import Footer from "./components/Footer";
@@ -12,12 +12,19 @@ function boxes(){
   )
 } 
 function App() {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cart, setCart] = useState([]);
   return (
     <div className="App">
       <div>
         <BrowserRouter>
-          <Header />          
-          <MainBody />
+          <Header setIsCartOpen={setIsCartOpen} cart={cart} setCart={setCart}/>          
+          <MainBody 
+            isCartOpen={isCartOpen}
+            setIsCartOpen={setIsCartOpen}
+            cart={cart}
+            setCart={setCart}
+          />
           <ButtonCount />
           <Footer />
         </BrowserRouter>

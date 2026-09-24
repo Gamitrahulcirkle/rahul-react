@@ -9,9 +9,48 @@ const Pdp = () => {
   const[ cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
+  const convertToHTML = (node) => {
+    if (!node) return "";
+
+    if (node.type === "root") {
+      return node.children.map(convertToHTML).join("");
+    }
+
+    if (node.type === "heading") {
+      const content = node.children.map(convertToHTML).join("");
+      return `<h${node.level}>${content}</h${node.level}>`;
+    }
+
+    if (node.type === "paragraph") {
+      const content = node.children.map(convertToHTML).join("");
+      return `<p>${content}</p>`;
+    }
+
+    if (node.type === "text") {
+      return node.value;
+    }
+
+    if (node.type === "link") {
+      const content = node.children.map(convertToHTML).join("");
+      return `<a href="${node.url}">${content}</a>`;
+    }
+    return "";
+  };
+
   useEffect(() => {
     const loadProduct = async () => {
       const productDetail = await fetchProductByHandle(handle);
+      // Find short_description metafield
+      const shortDescriptionField = productDetail?.metafields?.find(
+        (field) => field.key === "short_description"
+      );
+
+      if (shortDescriptionField?.value) {
+        const html = convertToHTML(shortDescriptionField.value);
+        //console.log("Converted HTML:", html);
+        // attach converted HTML to product object
+        productDetail.shortDescriptionHTML = html;
+      }
       setProduct(productDetail);
     };
     loadProduct();
@@ -51,6 +90,9 @@ const Pdp = () => {
   const variant = product.variants.edges[0].node;
   const price = variant?.price?.amount;
   const compareAtPrice = variant?.compareAtPrice?.amount;
+  const sortDescription = product?.shortDescriptionHTML;
+
+  // console.log("Product Detail ==>", product?.shortDescriptionHTML);
 
   return (    
     <div className="pdp page-width">
@@ -100,7 +142,7 @@ const Pdp = () => {
           {/* Description */}
           <div
             className="pdp__description"
-            dangerouslySetInnerHTML={{ __html: product.description }}
+            dangerouslySetInnerHTML={{ __html: sortDescription }}
           />
 
           {/* Add to Cart */}
