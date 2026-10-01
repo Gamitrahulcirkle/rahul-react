@@ -13,6 +13,7 @@ function MainBody({ isCartOpen, cart, setCart, setIsCartOpen }) {
         <Route path="/products/:handle" element={<ProductDetail />} />
       </Routes>
     </main>
+    
   );
 }
 export default MainBody;
